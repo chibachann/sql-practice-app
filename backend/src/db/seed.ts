@@ -1,20 +1,27 @@
 import Database from 'better-sqlite3';
+import fs from 'fs';
 import path from 'path';
 
-const db = new Database(path.join(__dirname, 'sample.db'));
+const DB_PATH = path.resolve(__dirname, './employee_data.db');
+const INIT_SQL_PATH = path.resolve(__dirname, '../schema/init.sql');
 
-db.exec(`
-  DROP TABLE IF EXISTS users;
-  CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    age INTEGER
-  );
+try {
+  // DBファイルが存在しない場合、自動作成される
+  const db = new Database(DB_PATH);
 
-  INSERT INTO users (name, age) VALUES
-    ('田中 太郎', 25),
-    ('John Smith', 32),
-    ('山田 花子', 29);
-`);
+  // SQLファイル読み込み
+  const initSQL = fs.readFileSync(INIT_SQL_PATH, 'utf-8');
 
-console.log('✅ DB初期化完了');
+  // トランザクションで実行（安全性を高める）
+  const exec = db.transaction(() => {
+    db.exec(initSQL);
+  });
+
+  exec();
+
+  console.log('✅ データベース初期化完了（init.sql 適用済）');
+  db.close();
+} catch (error) {
+  console.error('❌ データベース初期化に失敗しました:', error);
+  process.exit(1);
+}

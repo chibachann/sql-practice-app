@@ -3,7 +3,7 @@ import Database from 'better-sqlite3';
 import path from 'path';
 
 const router = Router();
-const dbPath = path.join(__dirname, '../db/sample.db');
+const dbPath = path.join(__dirname, '../db/employee_data.db');
 const db = new Database(dbPath);
 
 interface RunSqlRequest extends Request {

@@ -4,7 +4,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node dist/app.js",
-    "seed": "node dist/db/seed.js",
+    "postbuild": "cp -r schema dist/",
+    "seed": "npm run build && node dist/db/seed.js",
     "build": "tsc"
   },
   "dependencies": {

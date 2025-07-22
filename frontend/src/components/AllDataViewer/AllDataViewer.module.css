@@ -1,0 +1,31 @@
+.container {
+  padding: 20px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.tableBlock {
+  margin-bottom: 40px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  text-align: left;
+  font-size: 0.95rem;
+  background-color: #222;
+}
+
+.table th {
+  background-color: #333;
+}
