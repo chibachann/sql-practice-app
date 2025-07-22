@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "seed": "node seed.js",
+    "start": "node dist/app.js",
+    "seed": "node dist/db/seed.js",
     "build": "tsc"
   },
   "dependencies": {
     "better-sqlite3": "^12.2.0",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.15",
+    "typescript": "^5.8.3"
   }
 }
