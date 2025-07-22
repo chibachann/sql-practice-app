@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: sql-practice-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app            # 開発モード：ホットリロード用
+      - /app/node_modules # ホスト側のnode_modulesをマスクして整合性維持
+    command: npm start
